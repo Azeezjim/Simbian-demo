@@ -39,8 +39,9 @@ export default function CustomNavbar({ variant, onSwitchView }: CustomNavbarProp
         }}
       />
 
+
       <nav 
-        className={`absolute right-0 top-0 ${currentStyle.container} py-2 lg:py-3 px-4 lg:px-6 w-[65%] lg:w-[70%] xl:w-[75%] z-20 rounded-l-md hidden md:block`}
+        className={`absolute right-0 top-0 ${currentStyle.container} py-2 lg:py-3 px-4 lg:px-9 w-[65%] lg:w-[70%] xl:w-[75%] z-20 rounded-l-md hidden md:block`}
         style={{
           clipPath: "polygon(100% 0, 100% 100%, 10% 100%, 0 0)",
         }}
