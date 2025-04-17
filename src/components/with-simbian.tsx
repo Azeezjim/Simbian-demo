@@ -155,10 +155,10 @@ export default function WithSimbian({ onSwitchView }: WithSimbianProps) {
 
         // Progress through timeline steps
         setActiveStep((prev) => (prev < 3 ? prev + 1 : 0))
-      }, 5000) // Keep the original speed as requested
+      }, 1000) // Keep the original speed as requested
 
       return () => clearInterval(interval)
-    }, 2000)
+    }, 1000)
 
     return () => clearTimeout(initialDelay)
   }, [ignoredAlerts, wronglyClosed, activeThreats, allResolved])
