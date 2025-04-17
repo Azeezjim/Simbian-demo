@@ -31,9 +31,15 @@ interface AlertItem {
 
 export default function WithSimbian({ onSwitchView }: WithSimbianProps) {
   // Alert counts that will decrease over time
-  const [ignoredAlerts, setIgnoredAlerts] = useState(101)
-  const [wronglyClosed, setWronglyClosed] = useState(12)
-  const [activeThreats, setActiveThreats] = useState(2)
+  const [ignoredAlerts, setIgnoredAlerts] = useState(
+    Math.floor(Math.random() * 51) + 100 // 100-150
+  );
+  const [wronglyClosed, setWronglyClosed] = useState(
+    Math.floor(Math.random() * 16) + 20 // 20-35
+  );
+  const [activeThreats, setActiveThreats] = useState(
+    Math.floor(Math.random() * 9) + 1 // 1-9
+  );
 
   // Alert items in each card
   const [ignoredItems, setIgnoredItems] = useState<AlertItem[]>([])
@@ -101,17 +107,14 @@ export default function WithSimbian({ onSwitchView }: WithSimbianProps) {
     "Unauthorized Access Attempt",
   ]
 
-  // Decrease counters periodically to show alerts being resolved
   useEffect(() => {
     // Start with a delay
     const initialDelay = setTimeout(() => {
       const interval = setInterval(() => {
-        // Don't process if all alerts are resolved
         if (allResolved) {
           return
         }
 
-        // Randomly select which counter to decrease
         const random = Math.random()
         const alertType = alertTypes[Math.floor(Math.random() * alertTypes.length)]
 
@@ -126,7 +129,7 @@ export default function WithSimbian({ onSwitchView }: WithSimbianProps) {
               return prev
             })
             setResolvingAlert(null)
-          }, 1000)
+          }, 100)
         } else if (wronglyClosed > 0 && random < 0.9) {
           setResolvingAlert({ type: alertType, target: "wrongly" })
           setTimeout(() => {
@@ -138,7 +141,7 @@ export default function WithSimbian({ onSwitchView }: WithSimbianProps) {
               return prev
             })
             setResolvingAlert(null)
-          }, 1000)
+          }, 200)
         } else if (activeThreats > 0) {
           setResolvingAlert({ type: alertType, target: "active" })
           setTimeout(() => {
@@ -155,10 +158,10 @@ export default function WithSimbian({ onSwitchView }: WithSimbianProps) {
 
         // Progress through timeline steps
         setActiveStep((prev) => (prev < 3 ? prev + 1 : 0))
-      }, 1000) // Keep the original speed as requested
+      }, 2000) 
 
       return () => clearInterval(interval)
-    }, 1000)
+    }, 500)
 
     return () => clearTimeout(initialDelay)
   }, [ignoredAlerts, wronglyClosed, activeThreats, allResolved])
