@@ -167,11 +167,10 @@ export default function WithoutSimbian({ onSwitchView }: WithoutSimbianProps) {
   return (
     <div
       className="relative min-h-screen w-full overflow-x-hidden  bg-opacity-90 bg-blend-overlay bg-cover bg-center"
-      style={{ 
-        backgroundImage: "url('/mages/SimbianAI.jpg')",
+      style={{
+        backgroundImage: `url('/images/SimbianAI.png')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat"
       }}
     >
       {/* Navbar */}
