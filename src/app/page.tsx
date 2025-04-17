@@ -28,7 +28,6 @@ export default function Home() {
 
   return (
     <main className="min-h-screen">
-
       <AnimatePresence mode="wait">
         {activeSection === "without" ? (
           <motion.div
